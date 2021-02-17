@@ -1,0 +1,260 @@
+@import 'global.css';
+
+main {
+  background: black;
+  background: url('../img/contact_bg.jpg') no-repeat 00/cover;
+  min-height: 100vh;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+#ct-wrap {
+  display: flex;
+  position: relative;
+  height: 100vh;
+  width: 100%;
+  justify-content: flex-end;
+  align-items: center;
+  z-index: 2;
+}
+
+#ct-content-wrap {
+  width: 900px;
+  margin-left: 200px;
+}
+
+#ct-content {
+  margin: 20px;
+}
+
+#ct-content h1 {
+  font-family: sterilict;
+  letter-spacing: 5px;
+}
+
+.ct-field {
+  display: flex;
+  margin: 30px 0;
+  cursor: text;
+  max-width: 350px;
+}
+
+.ct-field input, #ip-message textarea {
+  background-color: rgba(36, 40, 67, .7);
+  border: 0;
+  padding: 10px 15px;
+  width: 100%;
+  letter-spacing: 1px;
+  font-family: Ubuntu;
+}
+
+.ct-field input:focus, #ip-message textarea:focus, #ip-submit button:focus {
+  outline-width: 0;
+}
+
+.ct-left-edge-wrap, .ct-right-edge-wrap {
+  height: auto;
+  position: relative;
+}
+
+.ct-left-edge-wrap:before {
+  position: absolute;
+  display: block;
+  content: '';
+  width: 12px;
+  height: 12px;
+  border-left: 1px solid #ffffff;
+  border-top: 1px solid #ffffff;
+  left: -1px;
+  top: -1px;
+  transition: border-color .15s ease-in-out;
+}
+
+.ct-right-edge-wrap:after {
+  position: absolute;
+  display: block;
+  content: '';
+  width: 12px;
+  height: 12px;
+  border-bottom: 1px solid #ffffff;
+  border-right: 1px solid #ffffff;
+  bottom: -1px;
+  right: -1px;
+  transition: border-color .15s ease-in-out;
+}
+
+.ct-edge-wrap-left-overlay:before {
+  border-left: 1px solid #E75D3C;
+  border-top: 1px solid #E75D3C;
+}
+
+.ct-edge-wrap-right-overlay:after {
+  border-bottom: 1px solid #E75D3C;
+  border-right: 1px solid #E75D3C;
+}
+
+.ct-left-edge, .ct-right-edge {
+  width: 13px;
+  height: 35px;
+  background-color: rgba(36, 40, 67, .7);
+}
+
+.ct-left-edge-corner {
+  border-style: solid;
+  border-width: 0 13px 10px 0;
+  border-color: transparent rgba(36, 40, 67, .7) transparent transparent;
+}
+
+.ct-right-edge-corner {
+  border-style: solid;
+  border-width: 10px 0 0 13px;
+  border-color: transparent transparent transparent rgba(36, 40, 67, .7);
+}
+
+#ip-message textarea {
+  min-height: 150px;
+  max-height: 150px;
+  min-width: 245px;
+  padding: 15px 15px;
+  font-family: Ubuntu;
+  letter-spacing: .5px;
+}
+
+#ip-message .ct-left-edge, #ip-message .ct-right-edge  {
+  height: 170px;
+}
+
+#ip-submit {
+  justify-content: flex-end;
+}
+
+#ip-submit-wrap {
+  display: flex;
+  cursor: pointer;
+}
+
+#ip-submit .ct-left-edge, #ip-submit .ct-right-edge {
+  background-color: #E75D3C;
+  transition: background-color .15s ease-in-out;
+}
+
+#ip-submit .ct-left-edge-corner {
+  border-color: transparent #E75D3C transparent transparent;
+  transition: border-color .15s ease-in-out;
+}
+
+#ip-submit .ct-right-edge-corner {
+  border-color: transparent transparent transparent #E75D3C;
+  transition: border-color .15s ease-in-out;
+}
+
+#ip-submit button {
+  cursor: pointer;
+  border: none;
+  padding-left: 20px;
+  padding-right: 15px;
+  background-color: #E75D3C;
+  font-family: sterilict;
+  letter-spacing: 5px;
+  font-size: 1.2rem;
+  transition: background-color .15s ease-in-out, color .15s ease-in-out;
+}
+
+#ip-submit:hover .ct-left-edge, #ip-submit:hover .ct-right-edge {
+  background-color: rgba(36, 40, 67, .7);
+}
+
+#ip-submit:hover .ct-left-edge-corner {
+  border-color: transparent rgba(36, 40, 67, .7) transparent transparent;
+}
+
+#ip-submit:hover .ct-right-edge-corner {
+  border-color: transparent transparent transparent rgba(36, 40, 67, .7);
+}
+
+#ip-submit:hover button {
+  background-color: rgba(36, 40, 67, .7);
+  color: #E75D3C;
+}
+
+#ip-submit:hover .ct-left-edge-wrap:before {
+  border-left: 1px solid #E75D3C;
+  border-top: 1px solid #E75D3C;
+}
+
+#ip-submit:hover .ct-right-edge-wrap:after {
+  border-bottom: 1px solid #E75D3C;
+  border-right: 1px solid #E75D3C;
+}
+
+#ct-error-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: absolute;
+  z-index: 3;
+  width: 100%;
+  margin-top: 50px;
+}
+
+.ct-error {
+  display: none;
+  width: 250px;
+  border: 1px solid #E75D3C;
+  padding: 10px 20px;
+  background-color: rgba(36, 40, 67, .7);
+  font-family: Ubuntu;
+  letter-spacing: 2px;
+  border-radius: 2px;
+  margin: 2px 0;
+}
+
+footer {
+  margin-top: -60px;
+}
+
+@media only screen and (max-height: 800px) {
+  footer {
+    margin-top: 0;
+  }
+}
+
+@media only screen and (max-width: 693px) {
+  main {
+    background: url('../img/contact_bg_small.jpg') no-repeat 00/cover fixed;
+    justify-content: center;
+    align-items: center;
+  }
+
+  #ct-wrap {
+    justify-content: center;
+  }
+
+  #ct-content-wrap {
+    width: 100%;
+    margin: 0;
+  }
+  
+  #ct-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin: 0;
+  }
+  
+  .ct-field {
+    max-width: 300px;
+    margin: 15px 0;
+  }
+
+  .ct-field input {
+    width: 250px;
+  }
+
+  #ct-error-wrap {
+    margin-top: 10px;
+  }
+}

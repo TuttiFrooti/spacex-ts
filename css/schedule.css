@@ -1,0 +1,140 @@
+@import 'global.css';
+
+#sc-top-wrap {
+  background: url('../img/schedule_bg.jpg') no-repeat 00/cover fixed;
+  height: 100%;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  font-family: Sterilict;
+}
+
+#sc-h1 {
+  margin-top: 100px;
+  margin-bottom: 40px;
+  z-index: 2;
+  letter-spacing: 5px;
+  font-size: 2rem;
+}
+
+#sc-top-center-wrap {
+  display: flex;
+  justify-content: center;
+  justify-items: center;
+  width: 100%;
+}
+
+#sc-top-content-wrap {
+  z-index: 2;
+  display: inline-flex;
+  flex-wrap: wrap;
+}
+
+.sc-launch-month-wrap {
+  margin: 10px;
+}
+
+.sc-launch-month {
+  font-weight: normal;
+  letter-spacing: 5px;
+  font-size: 1.3rem;
+  margin-bottom: 5px;
+}
+
+.sc-launch-day {
+  position: relative;
+  background-color: rgba(36, 40, 67, .7);
+  height: 140px;
+  width: 130px;
+  margin: 10px 0;
+  padding: 10px 20px;
+}
+
+.sc-launch-day:before {
+  position: absolute;
+  display: block;
+  content: '';
+  width: 15px;
+  height: 15px;
+  border-left: 1px solid #E75D3C;
+  border-top: 1px solid #E75D3C;
+  left: -1px;
+  top: -1px;
+}
+
+.sc-launch-day:after {
+  position: absolute;
+  display: block;
+  content: '';
+  width: 15px;
+  height: 15px;
+  border-right: 1px solid #E75D3C;
+  border-bottom: 1px solid #E75D3C;
+  right: -1px;
+  bottom: -1px;
+}
+
+.sc-ld-date {
+  margin-top: 15px;
+  color: #E75D3C;
+}
+
+.sc-ld-name {
+  font-weight: normal;
+  letter-spacing: 3px;
+  font-size: .8rem;
+  margin: 15px 0;
+}
+
+.sc-ld-payload > span {
+  color: #E75D3C;
+  font-size: 1.2rem;
+  line-height: 10px;
+  height: 20px;
+}
+
+.sc-ld-payload {
+  letter-spacing: 2px;
+  font-size: .7rem;
+}
+
+.sc-ld-readmore-wrap {
+  display: flex;
+  justify-content: center;
+  position: relative;
+  top: 40px;
+}
+
+.sc-ld-readmore {
+  display: flex;
+  width: 150px;
+  flex-direction: row;
+  align-items: center;
+}
+
+.sc-m-readmore-chevron {
+  color: #E75D3C;
+  height: 10px;
+  line-height: 5px;
+  margin-right: 5px;
+  letter-spacing: -2px;
+  font-size: 1rem;
+}
+
+.sc-m-readmore-txt {
+  font-family: Sterilict;
+  font-size: .7rem;
+  letter-spacing: 3px;
+  transition: color .15s ease-in-out;
+}
+
+.sc-ld-readmore-wrap:hover .sc-m-readmore-txt {
+  color: #E75D3C;
+}
+
+@media only screen and (max-width: 1537px) {
+  footer {
+    margin-top: 0;
+  }
+}
