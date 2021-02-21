@@ -1,41 +1,39 @@
+import { truncateMissionName } from './utils/truncateName';
+import { getMonthName } from './utils/getMonthName';
 
-const getMonthName = monthNumb => {
-  let monthsName = ["jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec"];
-
-  return monthsName[monthNumb];
+interface MissionData {
+  mission_name: string;
+  details: string;
+  rocket: {
+    second_stage: {
+      payloads: [{ payload_type: string }];
+    };
+  };
+  flight_number: string;
+  launch_date_utc: string;
 }
 
-const truncateMissionName = name => {
-  name = name.split(' ');
-  
-  if (!!name[1] && name[1].length < 2) {
-    if (!!parseInt(name[1])) {
-      return `${name[0]} ${name[1]}`;
-    } else {
-      return name[0];
-    }
-  } else {
-    return name[0];
-  }
+interface SortTypes {
+  launch_date_unix: string;
 }
 
 const fetchUpcomingLaunches = () => {
   fetch('https://api.spacexdata.com/v3/launches/upcoming')
     .then(r => r.json())
     .then(launchData => {
-      let months = [];
-      launchData.sort((a, b) => (a.launch_date_unix > b.launch_date_unix) ? 1 : -1);
+      let months: string[] = [];
+      launchData.sort((a: SortTypes, b: SortTypes) => a.launch_date_unix > b.launch_date_unix ? 1 : -1);
 
-      const getContentWrap = document.querySelector('#sc-top-content-wrap');
+      const getContentWrap = document.querySelector('#sc-top-content-wrap') as HTMLElement;
 
-      launchData.forEach(mission => {
-        let launchDate = new Date(mission.launch_date_utc);
-        let day = launchDate.getDate() < 10 ? `0${launchDate.getDate()}` : launchDate.getDate();
-        let monthByName = getMonthName(launchDate.getMonth());
-        let cleanMissionName = truncateMissionName(mission.mission_name);
+      launchData.forEach((mission: MissionData) => {
+        let launchDate: Date = new Date(mission.launch_date_utc);
+        let day: string | number = launchDate.getDate() < 10 ? `0${launchDate.getDate()}` : launchDate.getDate();
+        let monthByName: string = getMonthName(launchDate.getMonth());
+        let cleanMissionName: string = truncateMissionName(mission.mission_name);
 
         if (months.includes(monthByName)) {
-          const getMonthDiv = document.querySelector(`#${monthByName}`);
+          const getMonthDiv = document.querySelector(`#${monthByName}`) as HTMLElement;
 
           getMonthDiv.innerHTML += `
             <div class="sc-launch-day">
@@ -76,7 +74,7 @@ const fetchUpcomingLaunches = () => {
       });
 
       fixTheWidth(months.length);
-      const getLoadingElm = document.querySelector('.loading-icon');
+      const getLoadingElm = document.querySelector('.loading-icon') as HTMLDivElement;
       getLoadingElm.style.display = 'none';
 
     })
@@ -85,29 +83,30 @@ const fetchUpcomingLaunches = () => {
     })
 }
 
-const fixTheWidth = totalElm => {
-  const div = document.querySelector('#sc-top-content-wrap');
-  let preNumb = Math.floor((window.innerWidth - 18) / 190);
+const fixTheWidth = (totalElm: number) => {
+  const div = document.querySelector('#sc-top-content-wrap') as HTMLElement;
+  let preNumb: number = Math.floor((window.innerWidth - 18) / 190);
   if (totalElm > preNumb) applyWidth(div, (preNumb * 190) + 'px');
 
   window.addEventListener('resize', () => {
-    let numb = Math.floor((this.innerWidth - 18) / 190);
+    let numb: number = Math.floor(((0) - 18) / 190);
     if (totalElm >= numb) {
       applyWidth(div, (numb * 190) + 'px');
     }
   })
 }
 
-const applyWidth = (div, width) => {
+const applyWidth = (div: HTMLElement, width: string) => {
   div.style.width = width;
 }
 
 const menuButton = () => {
-  document.querySelector('.mn-button').addEventListener('click', function() {
-    let getMenu = document.querySelector('.mn-wrap');
-    getMenu.classList.toggle('mobile-menu');
-    this.classList.toggle('open');
-  })
+  const Button = document.querySelector(".mn-button") as HTMLButtonElement;
+  Button.addEventListener("click", function () {
+    let getMenu = document.querySelector(".mn-wrap") as HTMLElement;
+    getMenu.classList.toggle("mobile-menu");
+    this.classList.toggle("open");
+  });
 }
 
 menuButton();

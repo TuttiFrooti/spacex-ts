@@ -2,8 +2,32 @@
 
 > Space X / NASA Microsite
 
-<img src="./img/noroff-logo.png" width="180">
 
+
+
+
+# Launch instructions:
+
+First install the dependencies with `npm install`.
+
+## Tests
+
+To run tests, type `npm test`
+
+## Project tested on Parcel
+This project is only tested on Parcel. You can find instructions on how to install it [here](https://parceljs.org/getting_started.html).
+
+When you have Parcel installed type: `npm start`;
+
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+# Old ReadMe
 
 ## Goal
 
