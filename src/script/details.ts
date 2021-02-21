@@ -1,28 +1,10 @@
-const searchParams = new URLSearchParams(window.location.search);
-const queryString = searchParams.get('flight');
+import { getMonthName } from './utils/getMonthName';
+import { constructPayloadWeight } from './utils/getPayloadWeight';
 
-const calcualteMonth = monthNumb => {
-  let monthsName = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"];
+const searchParams: URLSearchParams = new URLSearchParams(window.location.search);
+const queryString: string | null = searchParams.get('flight');
 
-  return monthsName[monthNumb];
-}
-
-const constructPayloadWeight = (weightKg, weightLb) => {
-  let payloadWeightKg = weightKg ? `${weightKg}kg` : null;
-  let payloadWeightLb = weightLb ? `${weightLb}lbs` : null;
-
-  if (payloadWeightKg && payloadWeightLb) {
-    return `${payloadWeightKg} / ${payloadWeightLb}`;
-  } else if (payloadWeightKg && !payloadWeightLb) {
-    return payloadWeightKg;
-  } else if (!payloadWeightKg && payloadWeightLb) {
-    return payloadWeightLb;
-  } else {
-    return 'Unknown';
-  }
-}
-
-const constructDetails = details => {
+const constructDetails = (details: string) => {
   if(details) {
     return `
     <div class="dp-md-content">
@@ -42,18 +24,51 @@ const constructDetails = details => {
   }
 }
 
+interface MissionData {
+  mission_name: string;
+  details: string;
+  rocket: {
+    second_stage: {
+      payloads: [
+        {
+          payload_type: string;
+          payload_mass_kg: string;
+          payload_mass_lbs: string;
+          reused: string;
+          customers: [];
+          manufacturer: string;
+          nationality: string;
+          orbit: string;
+        }
+      ];
+    };
+    rocket_name: string;
+    rocket_type: string;
+  };
+  launch_site: {
+    site_name_long: string;
+    site_name: string;
+  };
+  flight_number: string;
+  launch_date_utc: string;
+  crew: string;
+  links: {
+    reddit_launch: string;
+  };
+}
+
 const fetchLaunch = () => {
   fetch(`https://api.spacexdata.com/v3/launches/${queryString}`)
   .then(r => r.json())
-  .then(launchData => {
+  .then((launchData: MissionData) => {
     let launchDate = new Date(launchData.launch_date_utc);
 
-    let month = calcualteMonth(launchDate.getMonth())
+    let month = getMonthName(launchDate.getMonth())
     let day = launchDate.getDate() < 10 ? `0${launchDate.getDate()}` : launchDate.getDate();
     let hours = launchDate.getHours() < 10 ? `0${launchDate.getHours()}` : launchDate.getHours();
     let minutes = launchDate.getMinutes() < 10 ? `0${launchDate.getMinutes()}` : launchDate.getMinutes();
 
-    const missionDetailsDiv = document.querySelector('#dp-mission-details');
+    const missionDetailsDiv = document.querySelector('#dp-mission-details') as HTMLElement;
 
     let totalPLWeight = constructPayloadWeight(launchData.rocket.second_stage.payloads[0].payload_mass_kg, launchData.rocket.second_stage.payloads[0].payload_mass_lbs);
 
@@ -133,8 +148,9 @@ const fetchLaunch = () => {
 }
 
 const menuButton = () => {
-  document.querySelector('.mn-button').addEventListener('click', function () {
-    let getMenu = document.querySelector('.mn-wrap');
+  const Button = document.querySelector(".mn-button") as HTMLButtonElement;
+  Button.addEventListener('click', function () {
+    let getMenu = document.querySelector('.mn-wrap') as HTMLElement;
     getMenu.classList.toggle('mobile-menu');
     this.classList.toggle('open');
   })

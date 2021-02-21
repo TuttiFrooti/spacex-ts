@@ -1,4 +1,4 @@
-@import 'global.css';
+@import './global.css';
 
 #sc-top-wrap {
   background: url('../img/schedule_bg.jpg') no-repeat 00/cover fixed;
