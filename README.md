@@ -2,27 +2,20 @@
 
 > Space X / NASA Microsite
 
-
-
-
-
 # Launch instructions:
 
 First install the dependencies with `npm install`.
 
 ## Tests
 
-To run tests, type `npm test`
+To run tests, type `npm run test`
 
 ## Project tested on Parcel
 This project is only tested on Parcel. You can find instructions on how to install it [here](https://parceljs.org/getting_started.html).
 
-When you have Parcel installed type: `npm start`;
+When you have Parcel installed type: `npm run start`;
 
 
-<br>
-<br>
-<br>
 <br>
 <br>
 <br>
